@@ -1,3 +1,5 @@
+[Seminar 1. Getting Started with Django](https://gbcdn.mrgcdn.ru/uploads/record/275426/attachment/27f3b2975bc9c9c009e3242db17f8a4c.mp4)
+
 Создайте пару представлений в вашем первом приложении:
 - главная
 - о себе.
