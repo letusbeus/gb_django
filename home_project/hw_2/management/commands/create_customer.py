@@ -1,4 +1,6 @@
 from random import randint
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 from home_project.hw_2.models import Customer
 
@@ -7,7 +9,11 @@ class Command(BaseCommand):
     help = 'Create customer.'
 
     def handle(self, *args, **kwargs):
-        i = Customer.objects.count() + 1
+        try:
+            i = Customer.objects.latest('id').id + 1
+        except ObjectDoesNotExist:
+            i = 1
+        # i = Customer.objects.count() + 1 # было
         customer = Customer(
             name=f'Customer{i}',
             email=f'customer{i}@mail.ru',

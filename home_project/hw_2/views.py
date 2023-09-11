@@ -51,6 +51,10 @@ def get_product(request):
     pass
 
 
+def create_order(request):
+    pass
+
+
 def get_orders(request):
     result = '<br>'.join(str(i) for i in Order.objects.all())
     return HttpResponse(result)

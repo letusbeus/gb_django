@@ -1,4 +1,6 @@
 from random import randint
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 from home_project.hw_2.models import Product
 
@@ -7,7 +9,11 @@ class Command(BaseCommand):
     help = 'Create product.'
 
     def handle(self, *args, **kwargs):
-        i = Product.objects.count() + 1
+        try:
+            i = Product.objects.latest('id').id + 1
+        except ObjectDoesNotExist:
+            i = 1
+        # i = Product.objects.count() + 1 # было
         product = Product(
             title=f'Product_{i}',
             description=f'Product_description_{i}',
