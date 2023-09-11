@@ -15,5 +15,5 @@ class Command(BaseCommand):
             quantity=f'{randint(0, 99)}',
             added=f'{randint(2020, 2023)}-{randint(1, 12)}-{randint(1, 31)}'
         )
-        print(f'New product has been successfully added:\n{product}')
         product.save()
+        self.stdout.write(f'New product has been successfully added:\n{product}')

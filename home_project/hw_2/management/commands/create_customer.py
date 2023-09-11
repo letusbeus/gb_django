@@ -15,5 +15,5 @@ class Command(BaseCommand):
             address=f'address{i}',
             registered=f'{randint(2020, 2023)}-{randint(1, 12)}-{randint(1, 31)}'
         )
-        print(f'New customer has been successfully registered:\n{customer}')
         customer.save()
+        self.stdout.write(f'New customer has been successfully registered:\n{customer}')

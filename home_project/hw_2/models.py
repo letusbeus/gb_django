@@ -30,7 +30,7 @@ class Product(Model):
 
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
-    price = models.DecimalField()
+    price = models.DecimalField(max_digits=4, decimal_places=2)
     quantity = models.IntegerField()
     added = models.DateField()
 
@@ -51,9 +51,9 @@ class Product(Model):
 class Order(Model):
     objects = Manager()
 
-    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
-    total = models.DecimalField()
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product, on_delete=models.DO_NOTHING)
+    total = models.DecimalField(max_digits=8, decimal_places=2)
     placed = models.DateField()
 
     def __str__(self):

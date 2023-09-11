@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from .models import Customer, Product, Order
-from .management.commands.create_customer import Command
+from .management.commands.create_customer import Command as CustomerCommand
+from .management.commands.create_product import Command as ProductCommand
+from .management.commands.create_order import Command as OrderCommand
 
 
 def create_customer(request):
-    create_customer_command = Command()
+    create_customer_command = CustomerCommand()
     create_customer_command.handle()
     latest_customer = Customer.objects.latest('id')
     result = (f'New customer has been registered:<br>'
@@ -24,6 +26,20 @@ def get_customers(request):
 
 def get_customer(request):
     pass
+
+
+def create_product(request):
+    create_product_command = ProductCommand()
+    create_product_command.handle()
+    latest_product = Product.objects.latest('id')
+    result = (f'New product has been successfully added:<br>'
+              f'{latest_product.title},<br>'
+              f'{latest_product.description},<br>'
+              f'{latest_product.price},<br>'
+              f'{latest_product.quantity},<br>'
+              f'{latest_product.added}')
+    # return HttpResponse(latest_product)  # try it?
+    return HttpResponse(result)
 
 
 def get_products(request):
