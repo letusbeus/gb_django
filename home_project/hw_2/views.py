@@ -4,8 +4,13 @@ from .management.commands.create_customer import Command as CustomerCommand
 from .management.commands.create_product import Command as ProductCommand
 from .management.commands.create_order import Command as OrderCommand
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def create_customer(request):
+    logger.info('Customer creation has been requested.')
     create_customer_command = CustomerCommand()
     create_customer_command.handle()
     latest_customer = Customer.objects.latest('id')
@@ -20,6 +25,7 @@ def create_customer(request):
 
 
 def get_customers(request):
+    logger.info('Customers list has been requested.')
     result = '<br>'.join(str(i) for i in Customer.objects.all())
     return HttpResponse(result)
 
@@ -29,6 +35,7 @@ def get_customer(request):
 
 
 def create_product(request):
+    logger.info('Product creation has been requested.')
     create_product_command = ProductCommand()
     create_product_command.handle()
     latest_product = Product.objects.latest('id')
@@ -52,7 +59,12 @@ def get_product(request):
 
 
 def create_order(request):
-    pass
+    create_order_command = OrderCommand()
+    create_order_command.handle()
+    latest_order = Order.objects.latest('id')
+    result = (f'New order has been placed:<br>'
+              f'{latest_order}')
+    return HttpResponse(result)
 
 
 def get_orders(request):

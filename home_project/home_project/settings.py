@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hw_1',
-    'home_project.hw_2',
+    'hw_2',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +151,11 @@ LOGGING = {
             'filename': './log/hw_1.log',
             'formatter': 'verbose',  # добавлен параметр formatter
         },
+        'hw_2': {
+            'class': 'logging.FileHandler',
+            'filename': './log/hw_2.log',
+            'formatter': 'verbose',  # добавлен параметр formatter
+        },
     },
     'loggers': {
         'django': {
@@ -159,6 +164,11 @@ LOGGING = {
         },
         'hw_1': {
             'handlers': ['console', 'hw_1'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'hw_2': {
+            'handlers': ['console', 'hw_2'],
             'level': 'DEBUG',
             'propagate': True,
         },

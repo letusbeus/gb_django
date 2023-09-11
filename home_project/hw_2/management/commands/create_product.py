@@ -2,7 +2,7 @@ from random import randint
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
-from home_project.hw_2.models import Product
+from hw_2.models import Product
 
 
 class Command(BaseCommand):
@@ -17,8 +17,8 @@ class Command(BaseCommand):
         product = Product(
             title=f'Product_{i}',
             description=f'Product_description_{i}',
-            price=f'{randint(0, 9999) / 10}',
-            quantity=f'{randint(0, 99)}',
+            price=f'{randint(10, 9999) / 100}',
+            quantity=f'{randint(1, 99)}',
             added=f'{randint(2020, 2023)}-{randint(1, 12)}-{randint(1, 31)}'
         )
         product.save()

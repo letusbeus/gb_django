@@ -7,7 +7,7 @@ class Customer(Model):
 
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    phone = models.IntegerField(max_length=11)
+    phone = models.IntegerField()
     address = models.TextField(max_length=200)
     registered = models.DateField()
 
@@ -52,7 +52,7 @@ class Order(Model):
     objects = Manager()
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    product = models.ManyToManyField(Product, on_delete=models.DO_NOTHING)
+    product = models.ManyToManyField(Product)
     total = models.DecimalField(max_digits=8, decimal_places=2)
     placed = models.DateField()
 

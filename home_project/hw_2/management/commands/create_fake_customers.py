@@ -1,6 +1,6 @@
 from random import randint
 from django.core.management.base import BaseCommand
-from home_project.hw_2.models import Customer
+from hw_2.models import Customer
 
 
 class Command(BaseCommand):
