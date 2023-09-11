@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from random import choice
-# from seminars_project.sem_02.models import GameModel
-from sem_02.models import GameModel
+# from seminars_project.s2_heads_or_tails.models import GameModel
+from s2_heads_or_tails.models import GameModel
 
 
 class Command(BaseCommand):
@@ -12,4 +12,4 @@ class Command(BaseCommand):
         game = GameModel(result=result)
         game.save()
 
-        self.stdout.write(game)
+        self.stdout.write(f'{game}')

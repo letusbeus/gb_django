@@ -1,1 +1,0 @@
-[Lesson 2: Django ORM and Relationships](https://gbcdn.mrgcdn.ru/uploads/record/276336/attachment/4b4f1ead3ee689f9498bd94fb7a84298.mp4)
