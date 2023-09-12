@@ -58,8 +58,8 @@ class Order(Model):
 
     def __str__(self):
         return (
-            f'Customer: {self.customer.get_name}, '
-            f'product: {self.product.get_title}, '
+            f'Customer: {self.customer}, '
+            f'product: {self.product}, '
             f'total price: {self.total}, '
             f'placed: {self.placed}'
         )
