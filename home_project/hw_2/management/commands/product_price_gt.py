@@ -11,4 +11,5 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         price = kwargs['price']
         product = Product.objects.filter(price__gt=price)
-        self.stdout.write(f'{product}')
+        result = '\n'.join(str(i) for i in product)
+        self.stdout.write(f'{result}')
