@@ -124,53 +124,53 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process} {thread} {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',  # добавлен параметр formatter
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': './log/django.log',
-            'formatter': 'verbose',  # добавлен параметр formatter
-        },
-        'hw_1': {
-            'class': 'logging.FileHandler',
-            'filename': './log/hw_1.log',
-            'formatter': 'verbose',  # добавлен параметр formatter
-        },
-        'hw_2': {
-            'class': 'logging.FileHandler',
-            'filename': './log/hw_2.log',
-            'formatter': 'verbose',  # добавлен параметр formatter
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-        },
-        'hw_1': {
-            'handlers': ['console', 'hw_1'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'hw_2': {
-            'handlers': ['console', 'hw_2'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{levelname} {asctime} {module} {process} {thread} {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose',  # добавлен параметр formatter
+#         },
+#         'file': {
+#             'class': 'logging.FileHandler',
+#             'filename': './log/django.log',
+#             'formatter': 'verbose',  # добавлен параметр formatter
+#         },
+#         'hw_1': {
+#             'class': 'logging.FileHandler',
+#             'filename': './log/hw_1.log',
+#             'formatter': 'verbose',  # добавлен параметр formatter
+#         },
+#         'hw_2': {
+#             'class': 'logging.FileHandler',
+#             'filename': './log/hw_2.log',
+#             'formatter': 'verbose',  # добавлен параметр formatter
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'INFO',
+#         },
+#         'hw_1': {
+#             'handlers': ['console', 'hw_1'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         'hw_2': {
+#             'handlers': ['console', 'hw_2'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
