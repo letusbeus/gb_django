@@ -1,5 +1,4 @@
 from random import randint
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 from .my_command import generate_random_date
@@ -20,7 +19,7 @@ class Command(BaseCommand):
             last_customer_id = 1
 
         counter = kwargs.get('counter')
-        for i in range(last_customer_id, last_customer_id + counter + 1):
+        for i in range(last_customer_id, last_customer_id + counter):
             customer = Customer(
                 name=f'Customer{i}',
                 email=f'customer{i}@mail.ru',

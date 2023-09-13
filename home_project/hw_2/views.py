@@ -1,15 +1,15 @@
 from django.http import HttpResponse
 from .models import Customer, Product, Order
-from .management.commands.create_customer import Command as CustomerCommand
-from .management.commands.create_product import Command as ProductCommand
-from .management.commands.create_order import Command as OrderCommand
+from .management.commands.customer_create import Command as CustomerCommand
+from .management.commands.product_create import Command as ProductCommand
+from .management.commands.order_create import Command as OrderCommand
 
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-def create_customer(request):
+def customer_create(request):
     logger.info('Customer creation has been requested.')
     create_customer_command = CustomerCommand()
     create_customer_command.handle()
@@ -24,17 +24,17 @@ def create_customer(request):
     return HttpResponse(result)
 
 
-def get_customers(request):
+def customers_get(request):
     logger.info('Customers list has been requested.')
     result = '<br>'.join(str(i) for i in Customer.objects.all())
     return HttpResponse(result)
 
 
-def get_customer(request):
+def customer_get(request):
     pass
 
 
-def create_product(request):
+def product_create(request):
     logger.info('Product creation has been requested.')
     create_product_command = ProductCommand()
     create_product_command.handle()
@@ -49,16 +49,20 @@ def create_product(request):
     return HttpResponse(result)
 
 
-def get_products(request):
+def products_create(request):
+    pass
+
+
+def products_get(request):
     result = '<br>'.join(str(i) for i in Product.objects.all())
     return HttpResponse(result)
 
 
-def get_product(request):
+def product_get(request):
     pass
 
 
-def create_order(request):
+def order_create(request):
     create_order_command = OrderCommand()
     create_order_command.handle()
     latest_order = Order.objects.latest('id')
@@ -67,12 +71,12 @@ def create_order(request):
     return HttpResponse(result)
 
 
-def get_orders(request):
+def orders_get(request):
     result = '<br>'.join(str(i) for i in Order.objects.all())
     return HttpResponse(result)
 
 
-def get_order(request):
+def order_get(request):
     pass
 
 
@@ -96,9 +100,9 @@ def product_price_exact(request):
     pass
 
 
-def get_orders_from(request):
+def orders_from_user(request):
     pass
 
 
-def get_orders_placed_at(request):
+def orders_for_date(request):
     pass
