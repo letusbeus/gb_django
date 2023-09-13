@@ -6,6 +6,9 @@ class Command(BaseCommand):
     help = "Get all customers."
 
     def handle(self, *args, **kwargs):
-        customers = Customer.objects.all()  # get a list of all existing customers
-        result = '\n'.join(f'{i + 1}. {customer}' for i, customer in enumerate(customers))  # convert to string
-        self.stdout.write(f'{result}')  # display the result
+        customers = Customer.objects.all()
+        result = '\n'.join(f'{i + 1}. {customer}' for i, customer in enumerate(customers))
+        if result:
+            self.stdout.write(f'{result}')
+        else:
+            self.stdout.write(f'No customers were found.')

@@ -20,7 +20,6 @@ def customer_create(request):
               f'{latest_customer.phone},<br>'
               f'{latest_customer.address},<br>'
               f'{latest_customer.registered}')
-    # return HttpResponse(latest_customer)  # try it?
     return HttpResponse(result)
 
 
@@ -45,7 +44,6 @@ def product_create(request):
               f'{latest_product.price},<br>'
               f'{latest_product.quantity},<br>'
               f'{latest_product.added}')
-    # return HttpResponse(latest_product)  # try it?
     return HttpResponse(result)
 
 

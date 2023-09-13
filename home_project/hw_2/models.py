@@ -17,7 +17,8 @@ class Customer(Model):
     
     def __str__(self):
         return (
-            f'Customer: {self.name}, '
+            f'ID: {self.id}, '
+            f'customer: {self.name}, '
             f'email: {self.email}, '
             f'phone number: {self.phone}, '
             f'address: {self.address}, '
@@ -40,7 +41,8 @@ class Product(Model):
 
     def __str__(self):
         return (
-            f'Product: {self.title}, '
+            f'ID: {self.id}, '
+            f'product: {self.title}, '
             f'description: {self.description}, '
             f'price: {self.price}, '
             f'quantity: {self.quantity}, '
@@ -58,8 +60,8 @@ class Order(Model):
 
     def __str__(self):
         return (
-            f'Customer: {self.customer}, '
-            f'product: {self.product}, '
+            f'Order ID: {self.id}, '
+            f'customer: {self.customer.name}, '
             f'total price: {self.total}, '
             f'placed: {self.placed}'
         )

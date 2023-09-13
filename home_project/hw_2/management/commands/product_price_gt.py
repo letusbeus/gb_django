@@ -10,6 +10,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         price = kwargs['price']
-        product = Product.objects.filter(price__gt=price)
-        result = '\n'.join(str(i) for i in product)
-        self.stdout.write(f'{result}')
+        products = Product.objects.filter(price__gt=price)
+        result = '\n'.join(f'{i + 1}. {product}' for i, product in enumerate(products))
+        if result:
+            self.stdout.write(f'{result}')
+        else:
+            self.stdout.write(f'No products were found with the price greater then {price}.')
