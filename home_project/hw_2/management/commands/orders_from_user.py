@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = 'Get orders from a specific customer'
 
     def add_arguments(self, parser):
-        parser.add_argument('customer', type=str, help='customer ID')
+        parser.add_argument('customer', type=str, help='Customer ID')
 
     def handle(self, *args, **kwargs):
         customer = kwargs['customer']
@@ -14,4 +14,4 @@ class Command(BaseCommand):
         result = '\n'.join(f'{i + 1}. {order}' for i, order in enumerate(orders))
 
         self.stdout.write(f'{result}') if result else self.stdout.write(
-            f'No orders were found for the listed date: {customer}.')
+            f'No orders were found for the customer ID {customer}.')
