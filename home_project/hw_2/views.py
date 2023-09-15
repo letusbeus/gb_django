@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.views import View
+from django.views.generic import TemplateView
+from django.shortcuts import render, get_object_or_404
 from .models import Customer, Product, Order
 from .management.commands.customer_create import Command as CustomerCommand
 from .management.commands.product_create import Command as ProductCommand
