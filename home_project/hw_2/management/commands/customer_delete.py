@@ -16,5 +16,3 @@ class Command(BaseCommand):
             self.stdout.write(f'Customer ID {pk} has been successfully deleted!')
         else:
             self.stdout.write(f'No customers were found with the listed ID {pk}.')
-
-
