@@ -21,4 +21,5 @@ urlpatterns = [
     path('order_get/', views.order_get, name='order_get'),
     path('orders_from_user/', views.orders_from_user, name='orders_from_user'),
     path('orders_for_date/', views.orders_for_date, name='orders_for_date'),
+    path('customer_products_get/<int:customer_id>/<int:period>/', views.customer_products_get, name='customer_products_get'),
 ]

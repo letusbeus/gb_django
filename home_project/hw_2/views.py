@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+from django.core.management import call_command
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -12,17 +14,41 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def customer_products_get(request, customer_id, period):
+    customer_id = int(customer_id)
+    period = int(period)
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=period)
+
+    orders = Order.objects.filter(customer__id=customer_id, placed__range=(start_date, end_date)).order_by(
+        '-placed')
+
+    if orders.exists():
+        products = Product.objects.filter(order__in=orders).distinct()
+        return render(request, 'hw_2/customer_products.html', {
+            'customer_id': customer_id,
+            'period': period,
+            'products': products,
+        })
+    else:
+        return render(request, 'hw_2/customer_products.html', {
+            'customer_id': customer_id,
+            'period': period,
+            'products': [],
+        })
+
+
 def customer_create(request):
     logger.info('Customer creation has been requested.')
     create_customer_command = CustomerCommand()
     create_customer_command.handle()
     latest_customer = Customer.objects.latest('id')
     result = (f'New customer has been registered:<br>'
-              f'{latest_customer.name},<br>'
-              f'{latest_customer.email},<br>'
-              f'{latest_customer.phone},<br>'
-              f'{latest_customer.address},<br>'
-              f'{latest_customer.registered}')
+              f'Name: {latest_customer.name},<br>'
+              f'Email: {latest_customer.email},<br>'
+              f'Phone: {latest_customer.phone},<br>'
+              f'Address: {latest_customer.address},<br>'
+              f'Registration date: {latest_customer.registered}')
     return HttpResponse(result)
 
 
