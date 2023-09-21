@@ -76,6 +76,20 @@ def product_create(request):
     return HttpResponse(result)
 
 
+def product_img_create(request):
+    logger.info('Product creation has been requested.')
+    create_product_command = ProductCommand()
+    create_product_command.handle()
+    latest_product = Product.objects.latest('id')
+    result = (f'New product with image has been successfully added:<br>'
+              f'{latest_product.title},<br>'
+              f'{latest_product.description},<br>'
+              f'{latest_product.price},<br>'
+              f'{latest_product.quantity},<br>'
+              f'{latest_product.added}')
+    return HttpResponse(result)
+
+
 def products_create(request):
     pass
 

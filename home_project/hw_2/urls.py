@@ -3,6 +3,7 @@ from . import views
 
 app_name = 'hw_2'
 
+
 urlpatterns = [
     path('customer_create/', views.customer_create, name='customer_create'),
     path('customers_get/', views.customers_get, name='customers_get'),
@@ -22,4 +23,5 @@ urlpatterns = [
     path('orders_from_user/', views.orders_from_user, name='orders_from_user'),
     path('orders_for_date/', views.orders_for_date, name='orders_for_date'),
     path('customer_products_get/<int:customer_id>/<int:period>/', views.customer_products_get, name='customer_products_get'),
+    path('product_img_create/', views.product_img_create, name='product_img_create'),
 ]

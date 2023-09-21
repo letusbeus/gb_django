@@ -34,6 +34,7 @@ class Product(Model):
     price = models.DecimalField(max_digits=4, decimal_places=2)
     quantity = models.IntegerField()
     added = models.DateField()
+    product_img = models.ImageField(default=0)
 
     @property
     def get_title(self):
