@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
-from django.core.management import call_command
-from django.http import HttpResponse, JsonResponse
-from django.views import View
-from django.views.generic import TemplateView
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.core.files.storage import FileSystemStorage
+from .forms import ProductAddForm
+from .management.commands.my_command import generate_random_date
 from .models import Customer, Product, Order
 from .management.commands.customer_create import Command as CustomerCommand
 from .management.commands.product_create import Command as ProductCommand
@@ -78,16 +78,28 @@ def product_create(request):
 
 def product_img_create(request):
     logger.info('Product creation has been requested.')
-    create_product_command = ProductCommand()
-    create_product_command.handle()
-    latest_product = Product.objects.latest('id')
-    result = (f'New product with image has been successfully added:<br>'
-              f'{latest_product.title},<br>'
-              f'{latest_product.description},<br>'
-              f'{latest_product.price},<br>'
-              f'{latest_product.quantity},<br>'
-              f'{latest_product.added}')
-    return HttpResponse(result)
+    if request.method == 'POST':
+        form = ProductAddForm(request.POST, request.FILES)
+        message = 'New product been successfully added!'
+        if form.is_valid():
+            product_title = form.cleaned_data['product_title']
+            product_description = form.cleaned_data['product_description']
+            product_price = form.cleaned_data['product_price']
+            product_quantity = form.cleaned_data['product_quantity']
+            product_image = form.cleaned_data['product_image']
+            fs = FileSystemStorage()
+            fs.save(product_image.name, product_image)
+            logger.info(
+                f'New product been successfully added: {product_title=}, {product_description=}, {product_price=}, {product_quantity=}, '
+                f'{product_image.name}.')
+            product = Product(title=product_title, description=product_description,
+                              price=product_price, quantity=product_quantity,
+                              product_img=product_image, added=generate_random_date(2021, 2023))
+            product.save()
+    else:
+        form = ProductAddForm()
+        message = 'Please submit the form: '
+    return render(request, 'hw_2/product_img_create.html', {'form': form, 'message': message})
 
 
 def products_create(request):

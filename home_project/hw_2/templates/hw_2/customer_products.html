@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Customer Products</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Products purchased by customer ID {{ customer_id }} over the last {{ period }} days: {% endblock %}
+{% block content %}
     <h1>List of purchased products</h1>
     {% if products %}
     <p>
@@ -17,5 +15,4 @@
     {% else %}
     <p>Customer ID {{ customer_id }} has not placed any orders for the last {{ period }} days.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
