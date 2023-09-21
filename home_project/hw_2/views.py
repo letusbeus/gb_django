@@ -77,7 +77,6 @@ def product_create(request):
 
 
 def product_img_create(request):
-    logger.info('Product creation has been requested.')
     if request.method == 'POST':
         form = ProductAddForm(request.POST, request.FILES)
         message = 'New product been successfully added!'
@@ -87,10 +86,10 @@ def product_img_create(request):
             product_price = form.cleaned_data['product_price']
             product_quantity = form.cleaned_data['product_quantity']
             product_image = form.cleaned_data['product_image']
-            fs = FileSystemStorage()
-            fs.save(product_image.name, product_image)
+            # fs = FileSystemStorage()
+            # fs.save(product_image.name, product_image)
             logger.info(
-                f'New product been successfully added: {product_title=}, {product_description=}, {product_price=}, {product_quantity=}, '
+                f'New product been successfully added: \n{product_title}, {product_description}, {product_price}, {product_quantity}, '
                 f'{product_image.name}.')
             product = Product(title=product_title, description=product_description,
                               price=product_price, quantity=product_quantity,
