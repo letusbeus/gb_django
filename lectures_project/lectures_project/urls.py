@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('prefix/', include('lec_01.urls')),
     path('lec_03/', include('lec_03.urls')),
+    path('lec_05/', include('lec_05.urls')),
     path('', index),
 ]
