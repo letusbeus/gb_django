@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('s1_t5.urls')),
     path('', include('s2_heads_or_tails.urls')),
     path('', include('s2_blog.urls')),
+    path('', include('s5.urls')),
 ]
