@@ -23,5 +23,7 @@ urlpatterns = [
     path('prefix/', include('lec_01.urls')),
     path('lec_03/', include('lec_03.urls')),
     path('lec_05/', include('lec_05.urls')),
+    path('lec_06/', include('lec_06.urls')),
+    path('__debug__/', include("debug_toolbar.urls")),
     path('', index),
 ]

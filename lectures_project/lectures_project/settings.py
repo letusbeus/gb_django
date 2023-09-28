@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'lec_02',
     'lec_03',
     'lec_05',
+    'lec_06',
 ]
 
 MIDDLEWARE = [
