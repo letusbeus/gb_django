@@ -1,0 +1,1 @@
+To watch the lecture please follow the link [Lesson 5. Working with the administrative panel](https://gbcdn.mrgcdn.ru/uploads/record/269473/attachment/cc8fdab950b1d64e41e99e01ef03560c.mp4)
